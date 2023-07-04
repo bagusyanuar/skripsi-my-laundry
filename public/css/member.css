@@ -1,0 +1,74 @@
+.navbar-dark-primary{
+    background-color: #03045E !important;
+    height: 80px !important;
+}
+
+.hero-dark {
+    background-color: #03045E !important;
+    height: 500px;
+    color: whitesmoke;
+}
+
+.btn-login {
+    text-decoration: none;
+    border: solid 1px #ffb149;
+    padding: 8px 20px;
+    border-radius: 10px;
+    color: whitesmoke;
+    letter-spacing: 2px;
+}
+
+.btn-register {
+    text-decoration: none;
+    background-color: #ffb149;
+    padding: 10px 25px;
+    border-radius: 10px;
+    color: whitesmoke;
+    letter-spacing: 2px;
+}
+
+.btn-register:hover {
+    text-decoration: none;
+    color: whitesmoke;
+    background-color: #cc8e3a;
+    border: none;
+}
+
+.btn-login:hover {
+    text-decoration: none;
+    color: whitesmoke;
+    background-color: #ffb149;
+    border: none;
+    border-radius: 10px;
+}
+
+.custom-nav-item{
+    color: #a0aec0 !important;
+}
+
+.custom-nav-item:hover {
+    color: whitesmoke !important;
+}
+
+.card-paket {
+    height: 400px;
+    border-radius: 10px;
+    padding: 15px 15px;
+}
+
+.card-paket-button {
+    text-decoration: none;
+    border: solid 1px #03045E;
+    padding: 8px 20px;
+    border-radius: 10px;
+    color: #03045E;
+    letter-spacing: 2px;
+}
+
+.card-paket-button:hover {
+    text-decoration: none;
+    color: whitesmoke;
+    background-color: #03045E;
+    border: none;
+    border-radius: 10px;
+}
