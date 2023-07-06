@@ -14,18 +14,28 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', [\App\Http\Controllers\Member\HomeController::class, 'index'])->name('home');
-Route::get('/login', [\App\Http\Controllers\Member\AuthController::class, 'login'])->name('login');
+Route::match(['post', 'get'],'/login', [\App\Http\Controllers\Member\AuthController::class, 'login'])->name('login');
+Route::get('/logout', [\App\Http\Controllers\Member\AuthController::class, 'logout'])->name('logout');
+Route::match(['post', 'get'],'/register', [\App\Http\Controllers\Member\AuthController::class, 'register'])->name('register');
 
-Route::get('/dashboard', [\App\Http\Controllers\Admin\DashboardController::class, 'index'])->name('dashboard');
+Route::group(['middleware' => 'auth'], function (){
 
-Route::group(['prefix' => 'pengguna'], function () {
-    Route::match(['get', 'post'], '/', [\App\Http\Controllers\Admin\PenggunaController::class, 'index'])->name('pengguna');
-    Route::post('/{id}', [\App\Http\Controllers\Admin\PenggunaController::class, 'patch'])->name('pengguna.update');
-    Route::post('/{id}/delete', [\App\Http\Controllers\Admin\PenggunaController::class, 'destroy'])->name('pengguna.delete');
+    Route::group(['prefix' => 'pesan-paket'], function (){
+        Route::match(['post', 'get'], '/{id}', [\App\Http\Controllers\Member\PesananController::class, 'paket'])->name('pesan-paket.id');
+    });
+
+    Route::get('/dashboard', [\App\Http\Controllers\Admin\DashboardController::class, 'index'])->name('dashboard');
+
+    Route::group(['prefix' => 'pengguna'], function () {
+        Route::match(['get', 'post'], '/', [\App\Http\Controllers\Admin\PenggunaController::class, 'index'])->name('pengguna');
+        Route::post('/{id}', [\App\Http\Controllers\Admin\PenggunaController::class, 'patch'])->name('pengguna.update');
+        Route::post('/{id}/delete', [\App\Http\Controllers\Admin\PenggunaController::class, 'destroy'])->name('pengguna.delete');
+    });
+
+    Route::group(['prefix' => 'paket'], function () {
+        Route::match(['get', 'post'], '/', [\App\Http\Controllers\Admin\PaketController::class, 'index'])->name('paket');
+        Route::post('/{id}', [\App\Http\Controllers\Admin\PaketController::class, 'patch'])->name('paket.update');
+        Route::post('/{id}/delete', [\App\Http\Controllers\Admin\PaketController::class, 'destroy'])->name('paket.delete');
+    });
 });
 
-Route::group(['prefix' => 'paket'], function () {
-    Route::match(['get', 'post'], '/', [\App\Http\Controllers\Admin\PaketController::class, 'index'])->name('paket');
-    Route::post('/{id}', [\App\Http\Controllers\Admin\PaketController::class, 'patch'])->name('paket.update');
-    Route::post('/{id}/delete', [\App\Http\Controllers\Admin\PaketController::class, 'destroy'])->name('paket.delete');
-});

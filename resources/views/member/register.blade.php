@@ -37,7 +37,7 @@
 <div style="height: 100vh; width: 100%; background-color: #03045E"
      class="d-flex justify-content-center align-items-center">
     <div class="shadow-lg p-3 card-login">
-        <p class="text-center">Form Login</p>
+        <p class="text-center">Form Register</p>
         <form method="post">
             @csrf
             <div class="w-100 mb-1">
@@ -50,10 +50,31 @@
                 <input type="password" class="form-control" id="password" placeholder="Password"
                        name="password">
             </div>
+            <div class="w-100 mb-1">
+                <label for="nama" class="form-label">Nama</label>
+                <input type="text" class="form-control" id="nama" placeholder="nama"
+                       name="nama">
+            </div>
+            <div class="w-100 mb-1">
+                <label for="no_hp" class="form-label">No. HP</label>
+                <div class="input-group">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text" id="inputGroupPrepend">+62</span>
+                    </div>
+                    <input type="number" class="form-control" id="no_hp"
+                           name="no_hp" aria-describedby="inputGroupPrepend">
+                </div>
+            </div>
+            <div class="w-100 mb-1">
+                <label for="alamat" class="form-label">Alamat</label>
+                <textarea rows="3" class="form-control" id="alamat" placeholder="Alamat"
+                          name="alamat"></textarea>
+            </div>
+
             <hr>
             <div class="d-flex align-items-center justify-content-between">
-                <a href="{{ route('register') }}">Belum punya akun?</a>
-                <button type="submit" class="btn btn-primary">Login</button>
+                <a href="{{ route('login') }}">Sudah punya akun?</a>
+                <button type="submit" class="btn btn-primary">Register</button>
             </div>
         </form>
     </div>
