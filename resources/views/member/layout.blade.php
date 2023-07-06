@@ -45,13 +45,20 @@
             <li class="nav-item">
                 <a class="nav-link custom-nav-item" href="{{ route('home')  }}#paket">Paket</a>
             </li>
+
+            @auth()
+                <li class="nav-item">
+                    <a class="nav-link custom-nav-item" href="{{ route('pesanan')  }}">Pesanan</a>
+                </li>
+            @endauth
         </ul>
         <div class="d-flex align-items-center">
             @auth()
                 <img src="{{ asset('/assets/user.png') }}" height="20" alt="icon user" class="mr-2">
                 <div class="dropdown">
-                    <a href="#" class="btn-logout" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        Logout
+                    <a href="#" class="btn-logout" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true"
+                       aria-expanded="false">
+                        {{ auth()->user()->username }}
                     </a>
                     <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuButton">
                         <a class="dropdown-item" href="{{ route('logout') }}">Logout</a>
@@ -74,7 +81,10 @@
     <div class="text-center">
         <p style="color: whitesmoke">Kunjungi Tempat Kami</p>
         <div style="height: 300px">
-            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3954.970824267103!2d110.80458657039696!3d-7.578154658120073!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e7a16783dbd32eb%3A0xe852ba0aa1842158!2sUniversitas%20Duta%20Bangsa%20(Kampus%201%20Bhayangkara)!5e0!3m2!1sid!2sid!4v1688621925364!5m2!1sid!2sid" width="600" height="300" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+            <iframe
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3954.970824267103!2d110.80458657039696!3d-7.578154658120073!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e7a16783dbd32eb%3A0xe852ba0aa1842158!2sUniversitas%20Duta%20Bangsa%20(Kampus%201%20Bhayangkara)!5e0!3m2!1sid!2sid!4v1688621925364!5m2!1sid!2sid"
+                width="600" height="300" style="border:0;" allowfullscreen="" loading="lazy"
+                referrerpolicy="no-referrer-when-downgrade"></iframe>
         </div>
     </div>
 </section>

@@ -24,6 +24,10 @@ Route::group(['middleware' => 'auth'], function (){
         Route::match(['post', 'get'], '/{id}', [\App\Http\Controllers\Member\PesananController::class, 'paket'])->name('pesan-paket.id');
     });
 
+    Route::group(['prefix' => 'pesanan'], function (){
+        Route::get('/', [\App\Http\Controllers\Member\PesananController::class, 'index'])->name('pesanan');
+    });
+
     Route::get('/dashboard', [\App\Http\Controllers\Admin\DashboardController::class, 'index'])->name('dashboard');
 
     Route::group(['prefix' => 'pengguna'], function () {

@@ -24,6 +24,7 @@ class Pesanan extends Model
         'nama_bank',
         'atas_nama',
         'no_rekening',
+        'bukti_transfer',
     ];
 
     public function user()
