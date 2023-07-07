@@ -70,21 +70,21 @@
                     Master Data
                 </li>
                 <li class="nav-item">
-                    <a href="{{ route('pengguna') }}"
+                    <a href="{{ route('admin.pengguna') }}"
                        class="nav-link">
                         <i class="fa fa-user nav-icon" aria-hidden="true"></i>
                         <p>Pengguna</p>
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a href="#"
+                    <a href="{{ route('admin.pelanggan') }}"
                        class="nav-link">
                         <i class="fa fa-users nav-icon" aria-hidden="true"></i>
                         <p>Pelanggan</p>
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a href="{{ route('paket') }}"
+                    <a href="{{ route('admin.paket') }}"
                        class="nav-link">
                         <i class="fa fa-tags nav-icon" aria-hidden="true"></i>
                         <p>Paket</p>
@@ -94,21 +94,21 @@
                     Pesanan
                 </li>
                 <li class="nav-item">
-                    <a href="{{ route('paket') }}"
+                    <a href="{{ route('admin.pesanan.menunggu') }}"
                        class="nav-link">
                         <i class="fa fa-spinner nav-icon" aria-hidden="true"></i>
                         <p>Pesanan Menunggu</p>
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a href="{{ route('paket') }}"
+                    <a href="{{ route('admin.pesanan.proses') }}"
                        class="nav-link">
                         <i class="fa fa-cogs nav-icon" aria-hidden="true"></i>
                         <p>Pesanan Proses</p>
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a href="{{ route('paket') }}"
+                    <a href="{{ route('admin.pesanan.selesai') }}"
                        class="nav-link">
                         <i class="fa fa-check nav-icon" aria-hidden="true"></i>
                         <p>Pesanan Selesai</p>
@@ -118,7 +118,7 @@
                     Laporan
                 </li>
                 <li class="nav-item">
-                    <a href="#"
+                    <a href="{{ route('admin.laporan.pesanan') }}"
                        class="nav-link">
                         <i class="fa fa-cogs nav-icon" aria-hidden="true"></i>
                         <p>Pesanan</p>

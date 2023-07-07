@@ -15,7 +15,9 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', [\App\Http\Controllers\Member\HomeController::class, 'index'])->name('home');
 Route::match(['post', 'get'],'/login', [\App\Http\Controllers\Member\AuthController::class, 'login'])->name('login');
+Route::match(['post', 'get'],'/login-admin', [\App\Http\Controllers\Admin\AuthController::class, 'login'])->name('admin.login');
 Route::get('/logout', [\App\Http\Controllers\Member\AuthController::class, 'logout'])->name('logout');
+Route::get('/logout-admin', [\App\Http\Controllers\Admin\AuthController::class, 'logout'])->name('admin.logout');
 Route::match(['post', 'get'],'/register', [\App\Http\Controllers\Member\AuthController::class, 'register'])->name('register');
 
 Route::group(['middleware' => 'auth'], function (){
@@ -30,16 +32,34 @@ Route::group(['middleware' => 'auth'], function (){
 
     Route::get('/dashboard', [\App\Http\Controllers\Admin\DashboardController::class, 'index'])->name('dashboard');
 
-    Route::group(['prefix' => 'pengguna'], function () {
-        Route::match(['get', 'post'], '/', [\App\Http\Controllers\Admin\PenggunaController::class, 'index'])->name('pengguna');
-        Route::post('/{id}', [\App\Http\Controllers\Admin\PenggunaController::class, 'patch'])->name('pengguna.update');
-        Route::post('/{id}/delete', [\App\Http\Controllers\Admin\PenggunaController::class, 'destroy'])->name('pengguna.delete');
+    Route::group(['prefix' => 'admin'], function (){
+
+        Route::group(['prefix' => 'pengguna'], function () {
+            Route::match(['get', 'post'], '/', [\App\Http\Controllers\Admin\PenggunaController::class, 'index'])->name('admin.pengguna');
+            Route::post('/{id}', [\App\Http\Controllers\Admin\PenggunaController::class, 'patch'])->name('admin.pengguna.update');
+            Route::post('/{id}/delete', [\App\Http\Controllers\Admin\PenggunaController::class, 'destroy'])->name('admin.pengguna.delete');
+        });
+
+        Route::group(['prefix' => 'pelanggan'], function () {
+            Route::match(['get', 'post'], '/', [\App\Http\Controllers\Admin\PelangganController::class, 'index'])->name('admin.pelanggan');
+        });
+
+        Route::group(['prefix' => 'paket'], function () {
+            Route::match(['get', 'post'], '/', [\App\Http\Controllers\Admin\PaketController::class, 'index'])->name('admin.paket');
+            Route::post('/{id}', [\App\Http\Controllers\Admin\PaketController::class, 'patch'])->name('admin.paket.update');
+            Route::post('/{id}/delete', [\App\Http\Controllers\Admin\PaketController::class, 'destroy'])->name('admin.paket.delete');
+        });
+
+        Route::group(['prefix' => 'pesanan'], function () {
+            Route::match(['get', 'post'], '/menunggu', [\App\Http\Controllers\Admin\PesananController::class, 'menunggu'])->name('admin.pesanan.menunggu');
+            Route::match(['get', 'post'], '/proses', [\App\Http\Controllers\Admin\PesananController::class, 'proses'])->name('admin.pesanan.proses');
+            Route::match(['get', 'post'], '/selesai', [\App\Http\Controllers\Admin\PesananController::class, 'selesai'])->name('admin.pesanan.selesai');
+        });
+
+        Route::group(['prefix' => 'laporan'], function () {
+            Route::get( '/pesanan', [\App\Http\Controllers\Admin\LaporanController::class, 'pesanan'])->name('admin.laporan.pesanan');
+        });
     });
 
-    Route::group(['prefix' => 'paket'], function () {
-        Route::match(['get', 'post'], '/', [\App\Http\Controllers\Admin\PaketController::class, 'index'])->name('paket');
-        Route::post('/{id}', [\App\Http\Controllers\Admin\PaketController::class, 'patch'])->name('paket.update');
-        Route::post('/{id}/delete', [\App\Http\Controllers\Admin\PaketController::class, 'destroy'])->name('paket.delete');
-    });
 });
 

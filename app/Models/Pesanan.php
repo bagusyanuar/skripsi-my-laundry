@@ -21,6 +21,7 @@ class Pesanan extends Model
         'total',
         'alamat',
         'status',
+        'alasan',
         'nama_bank',
         'atas_nama',
         'no_rekening',

@@ -130,7 +130,7 @@
         }
 
         function store() {
-            let url = '{{ route('pengguna') }}';
+            let url = '{{ route('admin.pengguna') }}';
             let data = {
                 username: $('#username').val(),
                 password: $('#password').val(),
@@ -145,7 +145,7 @@
 
         function patch() {
             let id = $('#id').val();
-            let url = '{{ route('pengguna') }}' + '/' + id;
+            let url = '{{ route('admin.pengguna') }}' + '/' + id;
             let data = {
                 username: $('#username-edit').val(),
                 password: $('#password-edit').val(),
@@ -160,7 +160,7 @@
         }
 
         function destroy(id) {
-            let url = '{{ route('pengguna') }}' + '/' + id + '/delete';
+            let url = '{{ route('admin.pengguna') }}' + '/' + id + '/delete';
             AjaxPost(url, {}, function () {
                 clear();
                 SuccessAlert('Berhasil!', 'Berhasil menghapus data...');
@@ -209,7 +209,8 @@
         }
 
         $(document).ready(function () {
-            table = DataTableGenerator('#table-data', '/pengguna', [
+            let url = '{{ route('admin.pengguna') }}';
+            table = DataTableGenerator('#table-data', url, [
                 {data: 'DT_RowIndex', name: 'DT_RowIndex', searchable: false, orderable: false},
                 {data: 'username'},
                 {data: 'role'},

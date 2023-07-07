@@ -31,7 +31,7 @@ class PenggunaController extends CustomController
             }
         }
         if ($this->request->ajax()) {
-            $data = User::all();
+            $data = User::with([])->where('role', '!=', 'member');
             return $this->basicDataTables($data);
         }
         return view('admin.pengguna.index');

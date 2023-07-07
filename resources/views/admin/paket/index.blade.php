@@ -140,7 +140,7 @@
         }
 
         function store() {
-            let url = '{{ route('paket') }}';
+            let url = '{{ route('admin.paket') }}';
             let data = {
                 nama: $('#nama').val(),
                 harga: $('#harga').val(),
@@ -156,7 +156,7 @@
 
         function patch() {
             let id = $('#id').val();
-            let url = '{{ route('paket') }}' + '/' + id;
+            let url = '{{ route('admin.paket') }}' + '/' + id;
             let data = {
                 nama: $('#nama-edit').val(),
                 harga: $('#harga-edit').val(),
@@ -172,7 +172,7 @@
         }
 
         function destroy(id) {
-            let url = '{{ route('paket') }}' + '/' + id + '/delete';
+            let url = '{{ route('admin.paket') }}' + '/' + id + '/delete';
             AjaxPost(url, {}, function () {
                 clear();
                 SuccessAlert('Berhasil!', 'Berhasil menghapus data...');
@@ -225,7 +225,8 @@
         }
 
         $(document).ready(function () {
-            table = DataTableGenerator('#table-data', '/paket', [
+            let url = '{{ route('admin.paket') }}';
+            table = DataTableGenerator('#table-data', url, [
                 {data: 'DT_RowIndex', name: 'DT_RowIndex', searchable: false, orderable: false},
                 {data: 'nama'},
                 {
