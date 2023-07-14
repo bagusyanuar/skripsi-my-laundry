@@ -22,5 +22,11 @@ class UserSeeder extends Seeder
             'role' => 'admin'
         ];
         User::create($data);
+        $data2 = [
+            'username' => 'pimpinan',
+            'password' => Hash::make('pimpinan'),
+            'role' => 'pimpinan'
+        ];
+        User::create($data2);
     }
 }

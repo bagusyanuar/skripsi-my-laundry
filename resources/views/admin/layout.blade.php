@@ -39,7 +39,7 @@
     </ul>
     <ul class="navbar-nav ml-auto">
         <li class="nav-item">
-            <a href="#" class="nav-link navbar-link-item">Logout</a>
+            <a href="{{ route('admin.logout') }}" class="nav-link navbar-link-item">Logout</a>
         </li>
     </ul>
 </nav>
@@ -54,7 +54,7 @@
                 <img src="{{ asset('/assets/user.png') }}" class="img-circle" alt="User Image">
             </div>
             <div class="info">
-                <a href="#" class="d-block" style="font-size: 14px;">Admin</a>
+                <a href="#" class="d-block" style="font-size: 14px;">{{ auth()->user()->username }}</a>
             </div>
         </div>
         <nav class="mt-2">
@@ -69,51 +69,55 @@
                 <li class="nav-header" style="padding: 0.5rem 1rem 0.5rem 1rem;">
                     Master Data
                 </li>
-                <li class="nav-item">
-                    <a href="{{ route('admin.pengguna') }}"
-                       class="nav-link">
-                        <i class="fa fa-user nav-icon" aria-hidden="true"></i>
-                        <p>Pengguna</p>
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a href="{{ route('admin.pelanggan') }}"
-                       class="nav-link">
-                        <i class="fa fa-users nav-icon" aria-hidden="true"></i>
-                        <p>Pelanggan</p>
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a href="{{ route('admin.paket') }}"
-                       class="nav-link">
-                        <i class="fa fa-tags nav-icon" aria-hidden="true"></i>
-                        <p>Paket</p>
-                    </a>
-                </li>
-                <li class="nav-header" style="padding: 0.5rem 1rem 0.5rem 1rem;">
-                    Pesanan
-                </li>
-                <li class="nav-item">
-                    <a href="{{ route('admin.pesanan.menunggu') }}"
-                       class="nav-link">
-                        <i class="fa fa-spinner nav-icon" aria-hidden="true"></i>
-                        <p>Pesanan Menunggu</p>
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a href="{{ route('admin.pesanan.proses') }}"
-                       class="nav-link">
-                        <i class="fa fa-cogs nav-icon" aria-hidden="true"></i>
-                        <p>Pesanan Proses</p>
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a href="{{ route('admin.pesanan.selesai') }}"
-                       class="nav-link">
-                        <i class="fa fa-check nav-icon" aria-hidden="true"></i>
-                        <p>Pesanan Selesai</p>
-                    </a>
-                </li>
+                @if(auth()->user()->role == 'pimpinan')
+                    <li class="nav-item">
+                        <a href="{{ route('admin.pengguna') }}"
+                           class="nav-link">
+                            <i class="fa fa-user nav-icon" aria-hidden="true"></i>
+                            <p>Pengguna</p>
+                        </a>
+                    </li>
+                @endif
+                @if(auth()->user()->role == 'admin')
+                    <li class="nav-item">
+                        <a href="{{ route('admin.pelanggan') }}"
+                           class="nav-link">
+                            <i class="fa fa-users nav-icon" aria-hidden="true"></i>
+                            <p>Pelanggan</p>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="{{ route('admin.paket') }}"
+                           class="nav-link">
+                            <i class="fa fa-tags nav-icon" aria-hidden="true"></i>
+                            <p>Paket</p>
+                        </a>
+                    </li>
+                    <li class="nav-header" style="padding: 0.5rem 1rem 0.5rem 1rem;">
+                        Pesanan
+                    </li>
+                    <li class="nav-item">
+                        <a href="{{ route('admin.pesanan.menunggu') }}"
+                           class="nav-link">
+                            <i class="fa fa-spinner nav-icon" aria-hidden="true"></i>
+                            <p>Pesanan Menunggu</p>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="{{ route('admin.pesanan.proses') }}"
+                           class="nav-link">
+                            <i class="fa fa-cogs nav-icon" aria-hidden="true"></i>
+                            <p>Pesanan Proses</p>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="{{ route('admin.pesanan.selesai') }}"
+                           class="nav-link">
+                            <i class="fa fa-check nav-icon" aria-hidden="true"></i>
+                            <p>Pesanan Selesai</p>
+                        </a>
+                    </li>
+                @endif
                 <li class="nav-header" style="padding: 0.5rem 1rem 0.5rem 1rem;">
                     Laporan
                 </li>
@@ -125,7 +129,7 @@
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a href="#"
+                    <a href="{{ route('admin.laporan.pendapatan') }}"
                        class="nav-link">
                         <i class="fa fa-money nav-icon" aria-hidden="true"></i>
                         <p>Pendapatan</p>

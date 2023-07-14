@@ -2,12 +2,12 @@
 
 @section('content')
     <div class="d-flex align-items-center justify-content-between mb-3">
-        <p class="font-weight-bold mb-0" style="font-size: 20px">Halaman Laporan Pesanan</p>
+        <p class="font-weight-bold mb-0" style="font-size: 20px">Halaman Laporan Pendapatan</p>
         <ol class="breadcrumb breadcrumb-transparent mb-0">
             <li class="breadcrumb-item">
                 <a href="{{ route('dashboard') }}">Dashboard</a>
             </li>
-            <li class="breadcrumb-item active" aria-current="page">Laporan Pesanan
+            <li class="breadcrumb-item active" aria-current="page">Laporan Pendapatan
             </li>
         </ol>
     </div>
@@ -40,13 +40,15 @@
                         <th width="7%" class="text-right">Harga (Rp.)</th>
                         <th width="7%" class="text-center">Berat (Kg)</th>
                         <th width="7%" class="text-right">Total (Rp.)</th>
-                        <th>Alamat</th>
-                        <th width="10%">Status</th>
                     </tr>
                     </thead>
                     <tbody>
                     </tbody>
                 </table>
+                <div class="text-right mt-3">
+                    <span class="mr-2 font-weight-bold">Total Pendapatan : </span>
+                    <span class="font-weight-bold" id="lbl-total">Rp. 0</span>
+                </div>
             </div>
         </div>
     </div>
@@ -63,7 +65,7 @@
 
 
         $(document).ready(function () {
-            let url = '{{ route('admin.laporan.pesanan') }}';
+            let url = '{{ route('admin.laporan.pendapatan') }}';
             table = DataTableGenerator('#table-data', url, [
                 {data: 'DT_RowIndex', name: 'DT_RowIndex', searchable: false, orderable: false},
                 {data: 'tanggal'},
@@ -81,33 +83,9 @@
                         return data.toLocaleString('id-ID');
                     }
                 },
-                {data: 'alamat'},
-                {
-                    data: 'status', render: function (data) {
-                        let status = '-';
-                        switch (data) {
-                            case 0:
-                                status = 'menunggu';
-                                break;
-                            case 1:
-                                status = 'Di Proses';
-                                break;
-                            case 6:
-                                status = 'Di Tolak';
-                                break;
-                            case 9:
-                                status = 'Selesai';
-                                break;
-                            default:
-                                break;
-                        }
-                        return status;
-                    }
-                },
-
             ], [
                 {
-                    targets: [0, 1, 2, 3, 6, 9],
+                    targets: [0, 1, 2, 3, 6],
                     className: 'text-center'
                 },
                 {
@@ -121,6 +99,9 @@
                 dom: 'ltipr',
                 "fnDrawCallback": function (setting) {
                     // eventFinish();
+                    let data = this.fnGetData();
+                    let total = data.map(item => item['total']).reduce((prev, next) => prev + next, 0);
+                    $('#lbl-total').html('Rp. '+total.toLocaleString('id-ID'));
                 }
             });
 
@@ -135,7 +116,7 @@
                 e.preventDefault();
                 let tgl1 = $('#tgl1').val();
                 let tgl2 = $('#tgl2').val();
-                window.open('/admin/laporan/pesanan/cetak?tgl1=' + tgl1 + '&tgl2=' + tgl2, '_blank');
+                window.open('/admin/laporan/pendapatan/cetak?tgl1=' + tgl1 + '&tgl2=' + tgl2, '_blank');
             });
         });
 

@@ -33,6 +33,6 @@ class AuthController extends CustomController
     public function logout()
     {
         Auth::logout();
-        return redirect('/');
+        return redirect('/login-admin');
     }
 }

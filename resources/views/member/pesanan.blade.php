@@ -46,10 +46,16 @@
                         <td class="text-center">
                             @switch($v->status)
                                 @case(0)
-                                <span>Menunggu</span>
+                                <span class="pt-1 pb-1 pl-3 pr-3" style="border-radius: 5px; background-color: #ffa505; color: white">Menunggu</span>
                                 @break
                                 @case(1)
-                                <span>Pesanan Di Terima</span>
+                                <span class="pt-1 pb-1 pl-3 pr-3" style="border-radius: 5px; background-color: #1167b1; color: white">Di Terima</span>
+                                @break
+                                @case(6)
+                                <span  class="pt-1 pb-1 pl-3 pr-3" style="border-radius: 5px; background-color: #ff2424; color: white">Di Tolak</span>
+                                @break
+                                @case(9)
+                                <span class="pt-1 pb-1 pl-3 pr-3" style="border-radius: 5px; background-color: #00a65a; color: white">Selesai</span>
                                 @break
                                 @default
                                 <span>-</span>

@@ -58,6 +58,9 @@ Route::group(['middleware' => 'auth'], function (){
 
         Route::group(['prefix' => 'laporan'], function () {
             Route::get( '/pesanan', [\App\Http\Controllers\Admin\LaporanController::class, 'pesanan'])->name('admin.laporan.pesanan');
+            Route::get( '/pendapatan', [\App\Http\Controllers\Admin\LaporanController::class, 'pendapatan'])->name('admin.laporan.pendapatan');
+            Route::get( '/pesanan/cetak', [\App\Http\Controllers\Admin\LaporanController::class, 'cetak_pesanan'])->name('admin.laporan.pesanan.cetak');
+            Route::get( '/pendapatan/cetak', [\App\Http\Controllers\Admin\LaporanController::class, 'cetak_pendapatan'])->name('admin.laporan.pendapatan.cetak');
         });
     });
 
