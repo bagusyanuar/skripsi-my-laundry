@@ -22,10 +22,19 @@ class PesananController extends CustomController
                 if (!$data) {
                     return $this->jsonResponse('failed ' . 'Pesanan Tidak DiTemukan...', 500);
                 }
+
+
                 $data_request = [
                     'status' => $this->postField('status'),
                     'alasan' => $this->postField('alasan'),
                 ];
+
+                if ($this->postField('status') == '1') {
+                    $harga = $data->harga;
+                    $total = $this->postField('berat') * $harga;
+                    $data_request['berat'] = $this->postField('berat');
+                    $data_request['total'] = $total;
+                }
                 $data->update($data_request);
                 return $this->jsonResponse('success', 200);
             } catch (\Exception $e) {

@@ -22,7 +22,7 @@ class CreatePesanan extends Migration
             $table->float('berat')->default(0);
             $table->integer('harga')->default(0);
             $table->float('total')->default(0);
-            $table->text('alamat');
+            $table->text('alamat')->nullable();
             $table->smallInteger('status');
             $table->string('nama_bank')->default('-');
             $table->string('atas_nama')->default('-');

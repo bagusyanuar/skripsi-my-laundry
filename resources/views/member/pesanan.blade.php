@@ -20,10 +20,6 @@
                 <th class="text-center">Berat (KG)</th>
                 <th class="text-right">Total (Rp.)</th>
                 <th>Alamat</th>
-                <th class="text-center">Via</th>
-                <th class="text-center">Atas Nama</th>
-                <th class="text-center">No. Rekening</th>
-                <th class="text-center">Bukti</th>
                 <th class="text-center">Status</th>
                 <th width="5%" class="text-center">Action</th>
                 </thead>
@@ -38,11 +34,6 @@
                         <td class="text-center">{{ $v->berat }}</td>
                         <td class="text-right">{{ number_format(($v->harga * $v->berat), 0, ',', '.') }}</td>
                         <td>{{ $v->alamat }}</td>
-                        <td class="text-center">{{ $v->nama_bank }}</td>
-                        <td class="text-center">{{ $v->atas_nama }}</td>
-                        <td class="text-center">{{ $v->no_rekening }}</td>
-                        <td class="text-center"><a href="{{ asset('/assets/bukti').'/'.$v->bukti_transfer }}"
-                                                   target="_blank">Lihat</a></td>
                         <td class="text-center">
                             @switch($v->status)
                                 @case(0)

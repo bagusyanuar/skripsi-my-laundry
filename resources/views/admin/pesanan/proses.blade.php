@@ -50,7 +50,7 @@
             $('.btn-finish').on('click', function (e) {
                 e.preventDefault();
                 let id = this.dataset.id;
-                finishHandler(id);
+                // finishHandler(id);
             });
         }
 

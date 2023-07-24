@@ -26,10 +26,6 @@
                         <th width="10%" class="text-center">Berat (Kg)</th>
                         <th width="10%" class="text-right">Total (Rp.)</th>
                         <th>Alamat</th>
-                        <th width="8%" class="text-center">Via</th>
-                        <th width="10%" class="text-center">Atas Nama</th>
-                        <th width="10%" class="text-center">No. Rekening</th>
-                        <th width="8%" class="text-center">Bukti Transfer</th>
                         <th width="8%">Action</th>
                     </tr>
                     </thead>
@@ -60,9 +56,14 @@
                         </select>
                     </div>
                     <div class="form-group w-100 mb-1" id="panel-alasan">
-                        <label for="alasan">Status</label>
+                        <label for="alasan">Alasan</label>
                         <textarea rows="3" class="form-control" id="alasan" placeholder=""
                                   name="alasan"></textarea>
+                    </div>
+                    <div class="form-group w-100 mb-1" id="panel-berat">
+                        <label for="berat">Berat</label>
+                        <input type="number" class="form-control" id="berat" placeholder="0"
+                                  name="berat">
                     </div>
                 </div>
                 <div class="modal-footer">
@@ -99,6 +100,7 @@
                 status: $('#status').val(),
                 id: $('#id').val(),
                 alasan: $('#alasan').val(),
+                berat: $('#berat').val(),
             };
             AjaxPost(url, data, function () {
                 clear();
@@ -110,13 +112,18 @@
 
         function eventChangeAlasan(v) {
             let el = $('#panel-alasan');
+            let elBerat = $('#panel-berat');
             if (v === '1') {
                 $('#alasan').val('');
-                el.removeClass('d-block')
-                el.addClass('d-none')
+                el.removeClass('d-block');
+                el.addClass('d-none');
+                elBerat.removeClass('d-none');
+                elBerat.addClass('d-block');
             } else {
-                el.removeClass('d-none')
-                el.addClass('d-block')
+                el.removeClass('d-none');
+                el.addClass('d-block');
+                elBerat.removeClass('d-block');
+                elBerat.addClass('d-none');
             }
         }
 
@@ -145,15 +152,7 @@
                     }
                 },
                 {data: 'alamat'},
-                {data: 'nama_bank'},
-                {data: 'atas_nama'},
-                {data: 'no_rekening'},
-                {
-                    data: null, render: function (data) {
-                        let url = '/assets/bukti/' + data['bukti_transfer'];
-                        return '<a href="' + url + '" target="_blank">Lihat</a>';
-                    }
-                },
+
                 {
                     data: null, render: function (data) {
                         return '<a href="#" class="btn btn-sm btn-primary btn-approve" data-id="' + data['id'] + '"><i class="fa fa-spinner f12"></i></a>';
@@ -161,7 +160,7 @@
                 },
             ], [
                 {
-                    targets: [0, 1, 2, 3, 6, 9, 10, 11, 12, 13],
+                    targets: [0, 1, 2, 3, 6, 9],
                     className: 'text-center'
                 },
                 {

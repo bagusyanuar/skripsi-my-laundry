@@ -36,23 +36,16 @@ class PesananController extends CustomController
                     'paket_id' => $data->id,
                     'tanggal' => Carbon::now(),
                     'no_pesanan' => 'PSN-'.Carbon::now()->format('YmdHis'),
-                    'berat' => $this->postField('berat'),
+                    'berat' => 0,
                     'harga' => $data->harga,
-                    'total' => ($this->postField('berat') * $data->harga),
+                    'total' => 0,
                     'alamat' => $this->postField('alamat'),
                     'status' => 0,
-                    'nama_bank' => $this->postField('bank'),
-                    'atas_nama' => $this->postField('atas_nama'),
-                    'no_rekening' => $this->postField('no_rekening'),
                 ];
-                $bukti = $this->generateImageName('bukti');
-                if ($bukti !== '') {
-                    $data_request['bukti_transfer'] = $bukti;
-                    $this->uploadImage('bukti', $bukti, 'bukti');
-                }
                 Pesanan::create($data_request);
                 return redirect()->back()->with('success', 'berhasil');
             }catch (\Exception $e) {
+                dd($e->getMessage());
                 return redirect()->back()->with('failed', 'terjadi kesalahan server');
             }
         }

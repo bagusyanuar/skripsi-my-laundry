@@ -61,51 +61,51 @@
                                 @csrf
                                 <input type="hidden" id="harga"
                                        name="berat" value="{{ $data->harga }}">
-                                <div class="w-100 mb-1">
-                                    <label for="berat" class="form-label">Berat Pakaian (Kg)</label>
-                                    <input type="number" class="form-control" id="berat" placeholder="Berat"
-                                           name="berat" value="0" required>
-                                </div>
-                                <div class="w-100 mb-1">
-                                    <label for="total" class="form-label">Total (Rp)</label>
-                                    <input type="number" class="form-control" id="total" placeholder="Total"
-                                           name="total" value="0" readonly>
-                                </div>
+{{--                                <div class="w-100 mb-1">--}}
+{{--                                    <label for="berat" class="form-label">Berat Pakaian (Kg)</label>--}}
+{{--                                    <input type="number" class="form-control" id="berat" placeholder="Berat"--}}
+{{--                                           name="berat" value="0" required>--}}
+{{--                                </div>--}}
+{{--                                <div class="w-100 mb-1">--}}
+{{--                                    <label for="total" class="form-label">Total (Rp)</label>--}}
+{{--                                    <input type="number" class="form-control" id="total" placeholder="Total"--}}
+{{--                                           name="total" value="0" readonly>--}}
+{{--                                </div>--}}
                                 <div class="w-100 mb-1">
                                     <label for="alamat" class="form-label">Alamat Pengambilan</label>
                                     <textarea type="text" class="form-control" id="alamat" placeholder="Alamat"
                                            name="alamat" required>{{ auth()->user()->pelanggan->alamat }}</textarea>
                                 </div>
                                 <hr>
-                                <div class="form-group w-100 mb-1">
-                                    <label for="bank">Bank</label>
-                                    <select class="form-control" id="bank" name="bank" required>
-                                        <option value="BCA">BCA</option>
-                                        <option value="Mandiri">Mandiri</option>
-                                        <option value="BRI">BRI</option>
-                                    </select>
-                                </div>
-                                <div class="w-100 mb-1">
-                                    <label for="atas_nama" class="form-label">Atas Nama</label>
-                                    <input type="text" class="form-control" id="atas_nama" placeholder="Atas Nama"
-                                           name="atas_nama" required>
-                                </div>
-                                <div class="w-100 mb-1">
-                                    <label for="no_rekening" class="form-label">No. Rekening</label>
-                                    <input type="number" class="form-control" id="no_rekening" placeholder="No. Rekening"
-                                           name="no_rekening" required>
-                                </div>
-                                <div class="w-100 mb-1">
-                                    <label for="bukti" class="form-label">Bukti
-                                        Transfer</label>
-                                    <input type="file" class="form-control-file" id="bukti"
-                                           placeholder="Gambar Bukti"
-                                           name="bukti" required>
-                                </div>
+{{--                                <div class="form-group w-100 mb-1">--}}
+{{--                                    <label for="bank">Bank</label>--}}
+{{--                                    <select class="form-control" id="bank" name="bank" required>--}}
+{{--                                        <option value="BCA">BCA</option>--}}
+{{--                                        <option value="Mandiri">Mandiri</option>--}}
+{{--                                        <option value="BRI">BRI</option>--}}
+{{--                                    </select>--}}
+{{--                                </div>--}}
+{{--                                <div class="w-100 mb-1">--}}
+{{--                                    <label for="atas_nama" class="form-label">Atas Nama</label>--}}
+{{--                                    <input type="text" class="form-control" id="atas_nama" placeholder="Atas Nama"--}}
+{{--                                           name="atas_nama" required>--}}
+{{--                                </div>--}}
+{{--                                <div class="w-100 mb-1">--}}
+{{--                                    <label for="no_rekening" class="form-label">No. Rekening</label>--}}
+{{--                                    <input type="number" class="form-control" id="no_rekening" placeholder="No. Rekening"--}}
+{{--                                           name="no_rekening" required>--}}
+{{--                                </div>--}}
+{{--                                <div class="w-100 mb-1">--}}
+{{--                                    <label for="bukti" class="form-label">Bukti--}}
+{{--                                        Transfer</label>--}}
+{{--                                    <input type="file" class="form-control-file" id="bukti"--}}
+{{--                                           placeholder="Gambar Bukti"--}}
+{{--                                           name="bukti" required>--}}
+{{--                                </div>--}}
                                 <hr>
                                 <button id="btn-pesan" type="submit"
                                         class="btn btn-primary d-flex justify-content-center align-items-center w-100 mt-3">
-                                    <span class="font-weight-bold">Pesan</span>
+                                    <span class="font-weight-bold">Pesan Sekarang</span>
                                 </button>
                             </form>
                         </div>
