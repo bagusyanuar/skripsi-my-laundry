@@ -2,12 +2,12 @@
 
 @section('content')
     <div class="d-flex align-items-center justify-content-between mb-3">
-        <p class="font-weight-bold mb-0" style="font-size: 20px">Halaman Pesanan Di Proses</p>
+        <p class="font-weight-bold mb-0" style="font-size: 20px">Halaman Pesanan Di Terima</p>
         <ol class="breadcrumb breadcrumb-transparent mb-0">
             <li class="breadcrumb-item">
                 <a href="{{ route('dashboard') }}">Dashboard</a>
             </li>
-            <li class="breadcrumb-item active" aria-current="page">Pesanan Di Proses
+            <li class="breadcrumb-item active" aria-current="page">Pesanan Di Terima
             </li>
         </ol>
     </div>
@@ -26,7 +26,6 @@
                         <th width="7%" class="text-center">Berat (Kg)</th>
                         <th width="7%" class="text-right">Total (Rp.)</th>
                         <th>Alamat</th>
-                        <th width="8%">Action</th>
                     </tr>
                     </thead>
                     <tbody>
@@ -46,40 +45,9 @@
             table.ajax.reload();
         }
 
-        function eventFinish() {
-            $('.btn-finish').on('click', function (e) {
-                e.preventDefault();
-                let id = this.dataset.id;
-                Swal.fire({
-                    title: "Konfirmasi!",
-                    text: "Apakah anda yakin menyelesaikan pesanan?",
-                    icon: 'question',
-                    showCancelButton: true,
-                    confirmButtonColor: '#3085d6',
-                    cancelButtonColor: '#d33',
-                    confirmButtonText: 'Ya',
-                    cancelButtonText: 'Batal',
-                }).then((result) => {
-                    if (result.value) {
-                        finishHandler(id);
-                    }
-                });
-            });
-        }
-
-        function finishHandler(id) {
-            let url = '{{ route('admin.pesanan.proses') }}';
-            let data = {
-                id: id,
-            };
-            AjaxPost(url, data, function () {
-                SuccessAlert('Berhasil!', 'Berhasil menyimpan data...');
-                reload();
-            });
-        }
 
         $(document).ready(function () {
-            let url = '{{ route('admin.pesanan.proses') }}';
+            let url = '{{ route('admin.pesanan.terima') }}';
             table = DataTableGenerator('#table-data', url, [
                 {data: 'DT_RowIndex', name: 'DT_RowIndex', searchable: false, orderable: false},
                 {data: 'tanggal'},
@@ -98,14 +66,10 @@
                     }
                 },
                 {data: 'alamat'},
-                {
-                    data: null, render: function (data) {
-                        return '<a href="#" class="btn btn-sm btn-success btn-finish" data-id="' + data['id'] + '"><i class="fa fa-check f12"></i></a>';
-                    }
-                },
+
             ], [
                 {
-                    targets: [0, 1, 2, 3, 6, 9,],
+                    targets: [0, 1, 2, 3, 6],
                     className: 'text-center'
                 },
                 {
@@ -115,7 +79,6 @@
             ], function (d) {
             }, {
                 "fnDrawCallback": function (setting) {
-                    eventFinish();
                 }
             });
         });

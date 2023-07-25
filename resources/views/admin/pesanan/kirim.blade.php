@@ -2,12 +2,12 @@
 
 @section('content')
     <div class="d-flex align-items-center justify-content-between mb-3">
-        <p class="font-weight-bold mb-0" style="font-size: 20px">Halaman Pesanan Di Proses</p>
+        <p class="font-weight-bold mb-0" style="font-size: 20px">Halaman Pesanan Di Kirim</p>
         <ol class="breadcrumb breadcrumb-transparent mb-0">
             <li class="breadcrumb-item">
                 <a href="{{ route('dashboard') }}">Dashboard</a>
             </li>
-            <li class="breadcrumb-item active" aria-current="page">Pesanan Di Proses
+            <li class="breadcrumb-item active" aria-current="page">Pesanan Di Kirim
             </li>
         </ol>
     </div>
@@ -68,7 +68,7 @@
         }
 
         function finishHandler(id) {
-            let url = '{{ route('admin.pesanan.proses') }}';
+            let url = '{{ route('admin.pesanan.kirim') }}';
             let data = {
                 id: id,
             };
@@ -79,7 +79,7 @@
         }
 
         $(document).ready(function () {
-            let url = '{{ route('admin.pesanan.proses') }}';
+            let url = '{{ route('admin.pesanan.kirim') }}';
             table = DataTableGenerator('#table-data', url, [
                 {data: 'DT_RowIndex', name: 'DT_RowIndex', searchable: false, orderable: false},
                 {data: 'tanggal'},
@@ -103,9 +103,10 @@
                         return '<a href="#" class="btn btn-sm btn-success btn-finish" data-id="' + data['id'] + '"><i class="fa fa-check f12"></i></a>';
                     }
                 },
+
             ], [
                 {
-                    targets: [0, 1, 2, 3, 6, 9,],
+                    targets: [0, 1, 2, 3, 6, 9],
                     className: 'text-center'
                 },
                 {

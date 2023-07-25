@@ -39,11 +39,17 @@
                         @case(1)
                         <span>di proses</span>
                         @break
+                        @case(2)
+                        <span>selesai</span>
+                        @break
+                        @case(3)
+                        <span>di kirim</span>
+                        @break
                         @case(6)
                         <span>di tolak</span>
                         @break
                         @case(9)
-                        <span>selesai</span>
+                        <span>di terima</span>
                         @break
                         @default
                         <span>-</span>

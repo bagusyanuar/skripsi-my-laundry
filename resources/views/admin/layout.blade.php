@@ -117,6 +117,20 @@
                             <p>Pesanan Selesai</p>
                         </a>
                     </li>
+                    <li class="nav-item">
+                        <a href="{{ route('admin.pesanan.kirim') }}"
+                           class="nav-link">
+                            <i class="fa fa-truck nav-icon" aria-hidden="true"></i>
+                            <p>Pesanan Di Kirim</p>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="{{ route('admin.pesanan.terima') }}"
+                           class="nav-link">
+                            <i class="fa fa-send nav-icon" aria-hidden="true"></i>
+                            <p>Pesanan Di Terima</p>
+                        </a>
+                    </li>
                 @endif
                 <li class="nav-header" style="padding: 0.5rem 1rem 0.5rem 1rem;">
                     Laporan

@@ -54,6 +54,8 @@ Route::group(['middleware' => 'auth'], function (){
             Route::match(['get', 'post'], '/menunggu', [\App\Http\Controllers\Admin\PesananController::class, 'menunggu'])->name('admin.pesanan.menunggu');
             Route::match(['get', 'post'], '/proses', [\App\Http\Controllers\Admin\PesananController::class, 'proses'])->name('admin.pesanan.proses');
             Route::match(['get', 'post'], '/selesai', [\App\Http\Controllers\Admin\PesananController::class, 'selesai'])->name('admin.pesanan.selesai');
+            Route::match(['get', 'post'], '/kirim', [\App\Http\Controllers\Admin\PesananController::class, 'kirim'])->name('admin.pesanan.kirim');
+            Route::match(['get', 'post'], '/terima', [\App\Http\Controllers\Admin\PesananController::class, 'terima'])->name('admin.pesanan.terima');
         });
 
         Route::group(['prefix' => 'laporan'], function () {

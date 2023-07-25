@@ -92,11 +92,17 @@
                             case 1:
                                 status = 'Di Proses';
                                 break;
+                            case 2:
+                                status = 'Selesai';
+                                break;
+                            case 3:
+                                status = 'Di Kirim';
+                                break;
                             case 6:
                                 status = 'Di Tolak';
                                 break;
                             case 9:
-                                status = 'Selesai';
+                                status = 'Di Terima';
                                 break;
                             default:
                                 break;

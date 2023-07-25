@@ -48,6 +48,10 @@
                 </div>
                 <div class="modal-body">
                     <input type="hidden" id="id" value="">
+                    <input type="hidden" id="phone" value="">
+                    <input type="hidden" id="name" value="">
+                    <input type="hidden" id="paket" value="">
+                    <input type="hidden" id="harga" value="">
                     <div class="form-group w-100 mb-1">
                         <label for="status">Status</label>
                         <select class="form-control" id="status" name="status">
@@ -63,7 +67,7 @@
                     <div class="form-group w-100 mb-1" id="panel-berat">
                         <label for="berat">Berat</label>
                         <input type="number" class="form-control" id="berat" placeholder="0"
-                                  name="berat">
+                               name="berat">
                     </div>
                 </div>
                 <div class="modal-footer">
@@ -89,7 +93,16 @@
             $('.btn-approve').on('click', function (e) {
                 e.preventDefault();
                 let id = this.dataset.id;
+                let phone = this.dataset.phone;
+                let name = this.dataset.name;
+                let paket = this.dataset.paket;
+                let harga = this.dataset.harga;
+                console.log(name, paket, phone, harga);
                 $('#id').val(id);
+                $('#phone').val(phone);
+                $('#name').val(name);
+                $('#paket').val(paket);
+                $('#harga').val(harga);
                 $('#modalApprove').modal('show');
             });
         }
@@ -103,6 +116,16 @@
                 berat: $('#berat').val(),
             };
             AjaxPost(url, data, function () {
+                let name = $('#name').val();
+                let paket = $('#paket').val();
+                let phone = $('#phone').val();
+                let harga = $('#harga').val();
+                let berat = $('#berat').val();
+                let total = berat * harga;
+                let text = 'Selamat, pesanan atas nama ' + name + ' paket pesanan ' + paket + ' berat pakaian ' + berat + '(KG) total biaya Rp. ' + total.toLocaleString('id-ID') + ' akan segera kami proses laundry';
+                let url = 'https://wa.me/' + phone + '?text=' + text;
+                let win = window.open(url, '_blank');
+                win.focus();
                 clear();
                 $('#modalApprove').modal('hide');
                 SuccessAlert('Berhasil!', 'Berhasil menyimpan data...');
@@ -129,6 +152,10 @@
 
         function clear() {
             $('#status').val('1');
+            $('#name').val('');
+            $('#paket').val('');
+            $('#phone').val('');
+            $('#harga').val('');
             eventChangeAlasan('1');
         }
 
@@ -155,7 +182,11 @@
 
                 {
                     data: null, render: function (data) {
-                        return '<a href="#" class="btn btn-sm btn-primary btn-approve" data-id="' + data['id'] + '"><i class="fa fa-spinner f12"></i></a>';
+                        let phone = data['user']['pelanggan']['no_hp'];
+                        let name = data['user']['pelanggan']['nama'];
+                        let paket = data['paket']['nama'];
+                        let harga = data['harga'];
+                        return '<a href="#" class="btn btn-sm btn-primary btn-approve" data-harga="' + harga + '" data-paket="' + paket + '" data-name="' + name + '" data-phone="' + phone + '" data-id="' + data['id'] + '"><i class="fa fa-spinner f12"></i></a>';
                     }
                 },
             ], [

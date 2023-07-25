@@ -37,26 +37,42 @@
                         <td class="text-center">
                             @switch($v->status)
                                 @case(0)
-                                <span class="pt-1 pb-1 pl-3 pr-3" style="border-radius: 5px; background-color: #ffa505; color: white">Menunggu</span>
+                                <span class="pt-1 pb-1 pl-3 pr-3"
+                                      style="border-radius: 5px; background-color: #ffa505; color: white">Menunggu</span>
                                 @break
                                 @case(1)
-                                <span class="pt-1 pb-1 pl-3 pr-3" style="border-radius: 5px; background-color: #1167b1; color: white">Di Terima</span>
+                                <span class="pt-1 pb-1 pl-3 pr-3"
+                                      style="border-radius: 5px; background-color: #1167b1; color: white">Di Proses</span>
+                                @break
+                                @case(2)
+                                <span class="pt-1 pb-1 pl-3 pr-3"
+                                      style="border-radius: 5px; background-color: #ee6c4d; color: white">Selesai</span>
+                                @break
+                                @case(3)
+                                <span class="pt-1 pb-1 pl-3 pr-3"
+                                      style="border-radius: 5px; background-color: #ff026e; color: white">Di Kirim</span>
                                 @break
                                 @case(6)
-                                <span  class="pt-1 pb-1 pl-3 pr-3" style="border-radius: 5px; background-color: #ff2424; color: white">Di Tolak</span>
+                                <span class="pt-1 pb-1 pl-3 pr-3"
+                                      style="border-radius: 5px; background-color: #ff2424; color: white">Di Tolak</span>
                                 @break
                                 @case(9)
-                                <span class="pt-1 pb-1 pl-3 pr-3" style="border-radius: 5px; background-color: #00a65a; color: white">Selesai</span>
+                                <span class="pt-1 pb-1 pl-3 pr-3"
+                                      style="border-radius: 5px; background-color: #00a65a; color: white">Di Terima</span>
                                 @break
                                 @default
                                 <span>-</span>
                             @endswitch
                         </td>
                         <td class="text-center">
-                            <a href="https://wa.me/62895422630233?text=Halo, Saya ingin menanyakan pesanan dengan nomor {{ $v->no_pesanan }}"
-                               target="_blank">
-                                <i class="fa fa-whatsapp" style="font-size: 14px;"></i>
-                            </a>
+                            @if($v->status != 9)
+                                <a href="https://wa.me/62895422630233?text=Halo, Saya ingin menanyakan pesanan dengan nomor {{ $v->no_pesanan }}"
+                                   target="_blank">
+                                    <i class="fa fa-whatsapp" style="font-size: 14px;"></i>
+                                </a>
+                            @else
+                                <span>-</span>
+                            @endif
                         </td>
                     </tr>
                 @endforeach
